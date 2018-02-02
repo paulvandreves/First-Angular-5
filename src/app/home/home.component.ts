@@ -32,18 +32,20 @@ import { DataService } from '../data.service';
   ]
 })
 export class HomeComponent implements OnInit {
-
+  likes: number = 0; // this had to be set to a number or it would come out as NAN 
   itemCount: number;
-  btnText: string = 'Add an item'; 
-  goalText: string = 'My first life goal'; 
+  btnText: string = 'Add Comment'; 
+  likeText: string = 'Like'; 
+  goalText: string = 'Comment on this post'; 
   goals = []; 
-  
+
   constructor(private _data: DataService) { }
 
   ngOnInit() {
     this._data.goal.subscribe(res => this.goals = res); 
     this.itemCount = this.goals.length; 
     this._data.changeGoal(this.goals); 
+    this.likes = this.likes; 
   }
 
   addItem() {
@@ -53,9 +55,15 @@ export class HomeComponent implements OnInit {
     this._data.changeGoal(this.goals);
   }
 
+  addLike() {
+    this.likes = this.likes + 1; 
+    console.log('add like method called!!')
+  }
+
   removeItem(i) {
     this.goals.splice(i,1); 
     this._data.changeGoal(this.goals);
+    this.likes = this.likes --; 
   }
 // every time an item is added or removed we change or update the goal property 
 }

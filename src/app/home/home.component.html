@@ -1,20 +1,22 @@
 <div class="container color-dark">
   <div class="col">
-    <p>Add a Bucket list item</p>
+    <h2>Blog Post </h2> <!-- Add an article pulled from the backend   -->
+
+
   </div>
   <div class="col">
-      <p>Your Bucket list ({{ itemCount }}) </p>    <!-- paren dobule curly  braces for interlopating in angular 5 -->
+      <p> Comments ({{ itemCount }}) Likes {{ likes }} </p>    <!-- paren dobule curly  braces for interlopating in angular 5 -->
     </div>
 </div>
 
 <div class="container color-light" [@goals]= "goals.length">
     <div class="col">
-      <p class="sm">Use this form to add a small bucket list goal. What do you want to do with your life  </p>
+      <p class="sm"> Comment on this post  </p>
 
       <form>
-        <input type="text" class ="txt" name="item" placeholder="Life goal .." [(ngModel)] = "goalText" >
-       <input type="submit" class="btn" [value]="btnText" (click)="addItem()" >   <!-- [property binding No {interpaltion needed}] (click events are defined by parens)  -->
-
+        <input type="text" class ="txt" name="item" placeholder="another comment" [(ngModel)] = "goalText" >
+        <p> <input type="submit" class="btn" [value]="btnText" (click)="addItem()" >   <!-- [property binding No {interpaltion needed}] (click events are defined by parens)  -->
+          <input type="submit" class="btn" [value]="likeText" (click)="addLike()">  </p>
       </form>
     </div>
     <div class="col">
